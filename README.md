@@ -1,7 +1,7 @@
-# U3D
+# Freshsales
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/DragonBox/freshsales/blob/master/LICENSE)
-[![Gem](https://img.shields.io/gem/v/u3d.svg?style=flat)](https://rubygems.org/gems/freshsales)
+[![Gem](https://img.shields.io/gem/v/freshsales.svg?style=flat)](https://rubygems.org/gems/freshsales)
 [![Build Status](https://img.shields.io/circleci/project/DragonBox/freshsales/master.svg?style=flat)](https://circleci.com/gh/DragonBox/freshsales)
 [![Coverage Status](https://coveralls.io/repos/github/DragonBox/freshsales/badge.svg?branch=master)](https://coveralls.io/github/DragonBox/freshsales?branch=master)
 
