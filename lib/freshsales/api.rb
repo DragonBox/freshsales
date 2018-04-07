@@ -14,11 +14,13 @@ module Freshsales
       @client = Client.new(self)
     end
 
+    # rubocop:disable Style/MethodMissing
     def method_missing(method, *args)
       request = RequestBuilder.new(@client)
       request.send(method, *args)
       request
     end
+    # rubocop:enable Style/MethodMissing
 
     def respond_to_missing?(_method_name, _include_private = false)
       true

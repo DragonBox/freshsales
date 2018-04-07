@@ -20,10 +20,26 @@
 # SOFTWARE.
 ## --- END LICENSE BLOCK ---
 
-describe Freshsales::API do
-  describe "missing methods" do
-    it "respond to .method call on instance" do
-      expect(Freshsales::API.new.method(:search)).to be_a(Method)
-    end
+require "bundler/gem_tasks"
+require "rspec/core/rake_task"
+require 'rubocop/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+RuboCop::RakeTask.new
+
+desc 'Run all rspec tests'
+task :test_all do
+  formatter = "--format progress"
+  if ENV["CIRCLECI"]
+    Dir.mkdir("/tmp/rspec/")
+    formatter += " -r rspec_junit_formatter --format RspecJunitFormatter -o /tmp/rspec/rspec.xml"
+    TEST_FILES = `(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)`.tr!("\n", ' ')
+    rspec_args = "#{formatter} #{TEST_FILES}"
+  else
+    formatter += ' --pattern "./spec/**/*_spec.rb"'
+    rspec_args = formatter
   end
+  sh "rspec #{rspec_args}"
 end
+
+task default: %i[rubocop test_all]

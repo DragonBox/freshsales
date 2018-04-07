@@ -24,13 +24,13 @@ module Freshsales
         yield(element)
       end
 
-      unless last?
-        start = [@collection.size, start].max
+      return if last?
 
-        fetch_next_page
+      start = [@collection.size, start].max
 
-        each(start, &Proc.new)
-      end
+      fetch_next_page
+
+      each(start, &Proc.new)
     end
 
     private
