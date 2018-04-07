@@ -20,47 +20,18 @@
 # SOFTWARE.
 ## --- END LICENSE BLOCK ---
 
-require 'simplecov'
-require 'coveralls'
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
-  [SimpleCov::Formatter::HTMLFormatter,
-   Coveralls::SimpleCov::Formatter]
-)
-SimpleCov.start do
-  add_filter '.bundle'
-end
-# Coveralls.wear!
+require 'logger'
+require 'uri'
+require 'cgi'
+require 'multi_json'
+require 'pry'
+require 'faraday'
 
-require 'freshsales'
+require 'freshsales/version'
 
-module SpecHelper
-end
-
-# Executes the provided block after adjusting the ENV to have the
-# provided keys and values set as defined in hash. After the block
-# completes, restores the ENV to its previous state.
-def with_env_values(hash)
-  old_vals = ENV.select { |k, _v| hash.include?(k) }
-  hash.each_key do |k|
-    ENV[k] = hash[k]
-  end
-  yield
-ensure
-  hash.each_key do |k|
-    ENV.delete(k) unless old_vals.include?(k)
-    ENV[k] = old_vals[k]
-  end
-end
-
-def capture_stds
-  require "stringio"
-  orig_stdout = $stdout
-  orig_stderr = $stderr
-  $stdout = StringIO.new
-  $stderr = StringIO.new
-  yield if block_given?
-  [$stdout.string, $stderr.string]
-ensure
-  $stdout = orig_stdout
-  $stderr = orig_stderr
-end
+require 'freshsales/api'
+require 'freshsales/freshsales_error'
+require 'freshsales/request_builder'
+require 'freshsales/response'
+require 'freshsales/client'
+require 'freshsales/cursor'
