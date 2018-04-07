@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/circleci/project/DragonBox/freshsales/master.svg?style=flat)](https://circleci.com/gh/DragonBox/freshsales)
 [![Coverage Status](https://coveralls.io/repos/github/DragonBox/freshsales/badge.svg?branch=master)](https://coveralls.io/github/DragonBox/freshsales?branch=master)
 
-Freshsales is a ruby wrapper around Freshsales API.
+Freshsales is a ruby wrapper around [Freshsales API](https://www.freshsales.io/api/)
 
 ---
 
