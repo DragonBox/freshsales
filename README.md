@@ -18,10 +18,8 @@ gem install freshsales
 ## Getting started
 
 ```ruby
-config = {}
-config[:freshsales_token] = "...."
-config[:freshsales_domain] = "yourdomain" # from https://yourdomain.freshsales.io/
-Freshsales::API.new(config)
+# given https://yourdomain.freshsales.io/ and your token
+freshsales = Freshsales::API.new(freshsales_token: "...", freshsales_domain: "yourdomain")
 ```
 
 ## Examples
