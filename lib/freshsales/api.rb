@@ -1,9 +1,9 @@
 module Freshsales
   class API
-    attr_accessor :freshsales_token, :freshsales_domain, :debug, :symbolize_keys, :logger, :adapter, :proxy
+    attr_accessor :freshsales_apikey, :freshsales_domain, :debug, :symbolize_keys, :logger, :adapter, :proxy
 
     def initialize(opts = {})
-      @freshsales_token = opts.fetch(:freshsales_token, ENV["FRESHSALES_TOKEN"])
+      @freshsales_apikey = opts.fetch(:freshsales_apikey, ENV["FRESHSALES_APIKEY"])
       @freshsales_domain = opts.fetch(:freshsales_domain, ENV["FRESHSALES_DOMAIN"])
       @symbolize_keys = false
       @debug = opts.fetch(:debug, false)

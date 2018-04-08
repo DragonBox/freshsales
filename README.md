@@ -15,11 +15,17 @@ Freshsales is a ruby wrapper around [Freshsales API](https://www.freshsales.io/a
 gem install freshsales
 ```
 
+### Requirements
+
+A Freshsales account and an API key. You can set your API key here.
+
+https://yourdomain.freshsales.io/personal-settings/api-settings
+
 ## Getting started
 
 ```ruby
 # given https://yourdomain.freshsales.io/ and your token
-freshsales = Freshsales::API.new(freshsales_token: "...", freshsales_domain: "yourdomain")
+freshsales = Freshsales::API.new(freshsales_domain: "yourdomain", freshsales_apikey: "...")
 ```
 
 ## Examples

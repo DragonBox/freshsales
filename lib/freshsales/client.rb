@@ -55,7 +55,7 @@ module Freshsales
           Faraday.new(freshsales_domain, proxy: @config.proxy, ssl: { version: "TLSv1_2" }) do |c|
             # c.request  :url_encoded
             c.response :raise_error
-            c.use Faraday::Request::Authorization, 'Token', "token=#{@config.freshsales_token}"
+            c.use Faraday::Request::Authorization, 'Token', "token=#{@config.freshsales_apikey}"
             if @config.debug
               c.response :logger, @config.logger, bodies: true do |logger|
                 logger.filter(/(Token token=)(\w+)/, '\1[HIDDEN]')
