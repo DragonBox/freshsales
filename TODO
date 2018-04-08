@@ -1,6 +1,0 @@
-* code cleanup
-# clean pagination API
-# handle errors (Faraday::Error::ClientError)
-# configuration options
-
-* rspecs

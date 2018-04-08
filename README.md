@@ -54,6 +54,10 @@ freshsales.leads(lead_id).delete
 
 Enable the `debug` option
 
+### WIP / first public release
+
+The library is a work in progress. There will be a couple of API changes before the first public version is officially rolled out. Check [the issues targeted for the 0.1.0 milestone](https://github.com/DragonBox/freshsales/issues?q=is%3Aopen+is%3Aissue+milestone%3A0.1.0)
+
 ### Solve SSL Errors
 
 If you face an issue similar to this one
