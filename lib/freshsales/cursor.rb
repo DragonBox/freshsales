@@ -41,8 +41,6 @@ module Freshsales
       @client.logger
     end
 
-    MAX = 100_000 # FIXME: get rid off or configure
-
     def fetch_next_page
       nextpage = @page + 1
       @args[:params] = params.merge(page: nextpage)
@@ -78,7 +76,7 @@ module Freshsales
     end
 
     def last?
-      @last_response || @collection.size >= MAX
+      @last_response
     end
   end
 end
