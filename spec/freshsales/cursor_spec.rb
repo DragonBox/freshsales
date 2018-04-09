@@ -20,24 +20,11 @@
 # SOFTWARE.
 ## --- END LICENSE BLOCK ---
 
-describe Freshsales::RequestBuilder do
-  describe "missing methods" do
-    it "respond to .method call on instance" do
-      subject = Freshsales::RequestBuilder.new(nil)
-      expect(subject.method(:accounts)).to be_a(Method)
-    end
-  end
-  describe "path" do
-    it "combines methods into path parts" do
-      client = double(Freshsales::Client)
-      expect(client).to receive(:httprequest).with("get", "/api/leads/100/convert")
-      subject = Freshsales::RequestBuilder.new(client)
-      subject.leads(100).convert.get
-    end
-  end
+require 'webmock/rspec'
 
-  describe "pagination" do
-    it "enumerates pages with #get_all_pages"
-    it "enumerates elements with #get_all"
+describe Freshsales::Cursor do
+  describe "#each" do
+    it "enumerates when no block given"
+    it "enumerates with blocks"
   end
 end
