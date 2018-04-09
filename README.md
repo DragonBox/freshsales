@@ -99,6 +99,12 @@ freshsales.contacts.view(view_id).get_all_pages(params: page_params).each do |co
 end
 ```
 
+`get_all` and `get_all_pages` return a `Freshsale::Cursor` whose `each` method returns a ruby `Enumerator` when no block is given.
+
+**tip** Enumerators in ruby can be used as [Enumerable](https://ruby-doc.org/core/Enumerable.html). This allows you to apply collection operations on them, even chain them, to transform or filter the returned data.
+
+E.g. if you wanted to restrict the number of elements/pages you could do `get_all[_pages].each.take(100)[.each]`.
+
 ### Troubleshoot
 
 Enable the `debug` option (`Freshsales::API.new(debug: true)`)
