@@ -61,7 +61,7 @@ module Freshsales
                 logger.filter(/(Token token=)(\w+)/, '\1[HIDDEN]')
               end
             end
-            c.adapter @config.adapter
+            c.adapter @config.faraday_adapter
           end
         end
     end

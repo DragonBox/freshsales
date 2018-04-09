@@ -1,15 +1,15 @@
 module Freshsales
   class API
-    attr_accessor :freshsales_apikey, :freshsales_domain, :debug, :symbolize_keys, :logger, :adapter, :proxy
+    attr_accessor :freshsales_apikey, :freshsales_domain, :debug, :symbolize_keys, :logger, :faraday_adapter, :proxy
 
     def initialize(opts = {})
       @freshsales_apikey = opts.fetch(:freshsales_apikey, ENV["FRESHSALES_APIKEY"])
       @freshsales_domain = opts.fetch(:freshsales_domain, ENV["FRESHSALES_DOMAIN"])
-      @symbolize_keys = false
+      @symbolize_keys = opts.fetch(:symbolize_keys, false)
       @debug = opts.fetch(:debug, false)
-      @logger = ::Logger.new(STDOUT)
-      @adapter = Faraday.default_adapter
-      @proxy = nil
+      @logger = opts.fetch(:logger, ::Logger.new(STDOUT))
+      @faraday_adapter = opts.fetch(:faraday_adapter, Faraday.default_adapter)
+      @proxy = opts.fetch(:proxy, ENV["FRESHSALES_PROXY"])
 
       @client = Client.new(self)
     end
