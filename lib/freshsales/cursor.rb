@@ -66,8 +66,10 @@ module Freshsales
         logger.debug "Found #{j.count} elements #{@type} #{@collection_name}"
 
         data = j
-      else
+      elsif j.is_a? String
         raise "Unexpected data type received #{j.class}. Are you combining pagination with raw_data? Unsupported for now"
+      else
+        raise "Unexpected data type received #{j.class}."
       end
 
       @last_response = last
