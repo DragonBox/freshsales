@@ -2,7 +2,7 @@ module Freshsales
   class Cursor
     include Enumerable
 
-    def initialize(client, path, type, collection_name, args)
+    def initialize(client, path, type, collection_name, args = {})
       @client = client
       @path       = path
       @type       = type
