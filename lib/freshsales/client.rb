@@ -51,7 +51,7 @@ module Freshsales
         end
         request.url path
       end
-    rescue => e
+    rescue StandardError => e
       handle_request_error(e)
     end
 
@@ -62,8 +62,6 @@ module Freshsales
         error_params[:raw_body] = error.response[:body]
 
         parsed_response = jsonify_body(error.response[:body], ignore_parsing_errors: true)
-
-        binding.pry
 
         if parsed_response
           error_params[:body] = parsed_response
