@@ -18,18 +18,21 @@ module Freshsales
       parsed_response = nil
 
       if response.body && !response.body.empty?
-        begin
-          headers = response.headers
-          body = MultiJson.load(response.body, symbolize_keys: @config.symbolize_keys)
-          parsed_response = Response.new(headers: headers, body: body)
-        rescue MultiJson::ParseError
-          error_params = { title: "UNPARSEABLE_RESPONSE", status_code: 500 }
-          error = FreshsalesError.new("Unparseable response: '#{response.body}'", error_params)
-          raise error
-        end
+        headers = response.headers
+        body = response.body
+        body = jsonify_body(body) unless @config.raw_data
+        parsed_response = Response.new(headers: headers, body: body)
       end
 
       parsed_response
+    end
+
+    def jsonify_body(body)
+      MultiJson.load(body, symbolize_keys: @config.symbolize_keys)
+    rescue MultiJson::ParseError
+      error_params = { title: "UNPARSEABLE_RESPONSE", status_code: 500 }
+      error = FreshsalesError.new("Unparseable response: '#{body}'", error_params)
+      raise error
     end
 
     def freshsales_domain

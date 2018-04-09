@@ -67,7 +67,7 @@ module Freshsales
 
         data = j
       else
-        raise "Unexpected data type received #{j.class}"
+        raise "Unexpected data type received #{j.class}. Are you combining pagination with raw_data? Unsupported for now"
       end
 
       @last_response = last
