@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    freshsales (0.0.2)
+    freshsales (0.0.3)
       faraday (~> 0.9.1)
       multi_json (~> 1.11.0)
 
