@@ -24,6 +24,117 @@ require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 require 'rubocop/rake_task'
 
+require 'logger'
+require 'colored'
+require 'highline/import'
+module UI
+ # raised from crash!
+  class UICrash < StandardError
+  end
+
+  class EPipeIgnorerLogDevice < Logger::LogDevice
+    def initialize(logdev)
+      @logdev = logdev
+    end
+
+    # rubocop:disable HandleExceptions
+    def write(message)
+      @logdev.write(message)
+    rescue Errno::EPIPE
+      # ignored
+    end
+    # rubocop:enable HandleExceptions
+  end
+  class << self
+    def log
+      return @log if @log
+
+      $stdout.sync = true
+
+      @log ||= Logger.new(EPipeIgnorerLogDevice.new($stdout))
+
+      @log.formatter = proc do |severity, datetime, _progname, msg|
+        "#{format_string(datetime, severity)}#{msg}\n"
+      end
+
+      @log
+    end
+
+    def verbose?
+      false
+    end
+
+    def format_string(datetime = Time.now, severity = "")
+      timestamp ||= if verbose?
+                        '%Y-%m-%d %H:%M:%S.%2N'
+                      else
+                        '%H:%M:%S'
+                      end
+      s = []
+      s << "#{severity} " if verbose? && severity && !severity.empty?
+      s << "[#{datetime.strftime(timestamp)}] " if timestamp
+      s.join('')
+    end
+
+    def confirm(message)
+      verify_interactive!(message)
+      agree("#{format_string}#{message.to_s.yellow} (y/n)", true)
+    end
+
+    def user_error!(message)
+      raise StandardError.new(message.to_s.red)
+    end
+
+    def input(message)
+      verify_interactive!(message)
+      ask("#{format_string}#{message.to_s.yellow}").to_s.strip
+    end
+
+    def error(message)
+      log.error(message.to_s.red)
+    end
+
+    def important(message)
+      log.error(message.to_s.yellow)
+    end
+
+    def success(message)
+      log.error(message.to_s.green)
+    end
+
+    def message(message)
+      log.info(message.to_s)
+    end
+
+    def deprecated(message)
+      log.error(message.to_s.bold.blue)
+    end
+
+    def command(message)
+      log.info("$ #{message}".cyan.underline)
+    end
+
+    def interactive?
+      interactive = true
+      interactive = false if $stdout.isatty == false
+      # interactive = false if Helper.ci?
+      return interactive
+    end
+
+    private
+
+    def verify_interactive!(message)
+      return if interactive?
+      important(message)
+      crash!("Could not retrieve response as the program runs in non-interactive mode")
+    end
+
+    def crash!(exception)
+      raise UICrash.new, exception.to_s
+    end
+  end
+end
+
 RSpec::Core::RakeTask.new(:spec)
 RuboCop::RakeTask.new
 
@@ -72,6 +183,7 @@ class FreshsalesCode
   end
 end
 
+require 'English'
 def run_command(command, error_message = nil)
   output = `#{command}`
   unless $CHILD_STATUS.success?
