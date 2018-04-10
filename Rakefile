@@ -28,7 +28,7 @@ require 'logger'
 require 'colored'
 require 'highline/import'
 module UI
- # raised from crash!
+  # raised from crash!
   class UICrash < StandardError
   end
 
@@ -66,10 +66,10 @@ module UI
 
     def format_string(datetime = Time.now, severity = "")
       timestamp ||= if verbose?
-                        '%Y-%m-%d %H:%M:%S.%2N'
-                      else
-                        '%H:%M:%S'
-                      end
+                      '%Y-%m-%d %H:%M:%S.%2N'
+                    else
+                      '%H:%M:%S'
+                    end
       s = []
       s << "#{severity} " if verbose? && severity && !severity.empty?
       s << "[#{datetime.strftime(timestamp)}] " if timestamp
@@ -82,7 +82,7 @@ module UI
     end
 
     def user_error!(message)
-      raise StandardError.new(message.to_s.red)
+      raise StandardError, message.to_s.red
     end
 
     def input(message)
