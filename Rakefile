@@ -171,7 +171,7 @@ class FreshsalesCode
     def version=(version)
       s = File.read(PATH)
       lines = s.split("\n").map do |line|
-        m = line.match(/(.*VERSION = ').*('.freeze.*)/)
+        m = line.match(/(.*VERSION = ['"]).*(['"].freeze.*)/)
         if m
           "#{m[1]}#{version}#{m[2]}"
         else
