@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.0.4](https://github.com/DragonBox/freshsales/tree/v0.0.4) (2018-04-11)
+[Full Changelog](https://github.com/DragonBox/freshsales/compare/v0.0.3...v0.0.4)
+
+**Closed issues:**
+
+- Relax dependencies [\#5](https://github.com/DragonBox/freshsales/issues/5)
+
 ## [v0.0.3](https://github.com/DragonBox/freshsales/tree/v0.0.3) (2018-04-10)
 [Full Changelog](https://github.com/DragonBox/freshsales/compare/v0.0.2...v0.0.3)
 
