@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # using same minimal dependencies as gibbon, for the sake of compatibility
-  spec.add_dependency 'faraday', '~> 0.9.1'
-  spec.add_dependency 'multi_json', '~> 1.11.0'
+  spec.add_dependency 'faraday', '>= 0.9.1'
+  spec.add_dependency 'multi_json', '>= 1.11.0'
 
   # Development only
   spec.add_development_dependency "bundler", "~> 1.13"
