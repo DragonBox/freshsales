@@ -82,7 +82,7 @@ Some resources are paginated and controlled by the `per_page` and `page` paramet
 
 While you can return individual pages like this:
 ```ruby
-freshsales.contacts.view(view_id).get(params: {"per_page": 100, "page": 2})).body
+freshsales.contacts.view(view_id).get(params: {"per_page": 100, "page": 2}).body
 ```
 
 the library also allows to iterate over all pages either one element at a time or one page at a time, lazily making the requests for the different pages when required by the client.
