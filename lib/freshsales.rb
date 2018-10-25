@@ -24,7 +24,6 @@ require 'logger'
 require 'uri'
 require 'cgi'
 require 'multi_json'
-require 'pry'
 require 'faraday'
 
 require 'freshsales/version'
