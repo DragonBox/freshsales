@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Freshsales
   class API
     attr_accessor :freshsales_apikey, :freshsales_domain, :debug, :symbolize_keys, :logger, :faraday_adapter, :proxy, :raw_data

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Freshsales
   class Response
     attr_accessor :headers, :body

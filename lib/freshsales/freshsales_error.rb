@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Freshsales
   class FreshsalesError < StandardError
     attr_reader :params

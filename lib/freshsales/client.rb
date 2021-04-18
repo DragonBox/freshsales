@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Freshsales
   class Client
     def initialize(config)
