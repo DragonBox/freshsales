@@ -9,6 +9,7 @@ init:
 
 install:
   - set PATH=C:\Ruby24-x64\bin;%PATH%
+  - gem install bundler
   - bundle install
 
 environment:
