@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "highline", "~> 1.7.10"
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake", ">= 12.3.3"
-  spec.add_development_dependency "rspec", "~> 3.1.0"
+  spec.add_development_dependency "rspec", "~> 3.8.0"
   spec.add_development_dependency 'rspec_junit_formatter', '~> 0.2.3'
   spec.add_development_dependency 'rubocop', '~> 0.52.1'
   spec.add_development_dependency "webmock", "~> 3.3.0"
