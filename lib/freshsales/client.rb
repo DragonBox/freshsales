@@ -57,7 +57,7 @@ module Freshsales
 
     def handle_request_error(error)
       error_params = {}
-      if error.is_a?(Faraday::Error::ClientError) && error.response
+      if error.is_a?(Faraday::ClientError) && error.response
         error_params[:status_code] = error.response[:status]
         error_params[:raw_body] = error.response[:body]
 
