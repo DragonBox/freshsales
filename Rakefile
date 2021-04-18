@@ -256,7 +256,7 @@ end
 desc 'Update the changelog, no commit made'
 task :changelog do
   puts "Updating changelog #{ENV['CHANGELOG_GITHUB_TOKEN']}"
-  sh "github_changelog_generator" if ENV['CHANGELOG_GITHUB_TOKEN']
+  sh "github_changelog_generator --user lacostej --project freshsales" if ENV['CHANGELOG_GITHUB_TOKEN']
 end
 
 desc 'Run all rspec tests'
