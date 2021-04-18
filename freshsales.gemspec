@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'freshsales/version'
@@ -8,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Jerome Lacoste"]
   spec.email       = 'jerome@wewanttoknow.com'
 
-  spec.required_ruby_version = '>= 2.1.0'
+  spec.required_ruby_version = '>= 2.4.0'
 
   spec.summary     = "Freshsales"
   spec.description = 'A wrapper for Freshsales API'
@@ -22,11 +24,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # using same minimal dependencies as gibbon, for the sake of compatibility
-  spec.add_dependency 'faraday', '>= 0.9.1'
+  spec.add_dependency 'faraday', '>= 0.16.0'
   spec.add_dependency 'multi_json', '>= 1.11.0'
 
   # Development only
-  spec.add_development_dependency "bundler", "~> 1.13"
+  spec.add_development_dependency "bundler", "~> 2.2"
   spec.add_development_dependency "colored", '>= 1.2', '< 2.0.0'
   spec.add_development_dependency "coveralls"
   spec.add_development_dependency "github_changelog_generator"

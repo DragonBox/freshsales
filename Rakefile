@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ## --- BEGIN LICENSE BLOCK ---
 # Copyright (c) 2018-present WeWantToKnow AS
 #
@@ -139,7 +141,7 @@ RSpec::Core::RakeTask.new(:spec)
 RuboCop::RakeTask.new
 
 class GithubChangelogGenerator
-  PATH = '.github_changelog_generator'.freeze
+  PATH = '.github_changelog_generator'
   class << self
     def future_release
       s = File.read(PATH)
@@ -166,7 +168,7 @@ class GithubChangelogGenerator
 end
 
 class FreshsalesCode
-  PATH = 'lib/freshsales/version.rb'.freeze
+  PATH = 'lib/freshsales/version.rb'
   class << self
     def version=(version)
       s = File.read(PATH)
