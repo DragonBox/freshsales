@@ -1,2 +1,4 @@
 future-release=v0.0.7
 exclude-labels=nochangelog,question
+user=DragonBox
+project=freshsales
