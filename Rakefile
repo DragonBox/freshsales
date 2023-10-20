@@ -247,7 +247,7 @@ task bump: 'ensure_git_clean' do
   UI.user_error! "Bump version stopped by user" unless UI.confirm("Next version will be #{nextversion}. Confirm?")
   FreshsalesCode.version = nextversion
   GithubChangelogGenerator.future_release = nextversion
-  sh 'rspec'
+  sh 'bundle exec rspec'
   sh 'git add .github_changelog_generator lib/freshsales/version.rb Gemfile.lock'
   sh "git commit -m 'Bump version to #{nextversion}'"
   sh 'git push'
