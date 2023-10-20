@@ -271,7 +271,7 @@ task :test_all do
     formatter += ' --pattern "./spec/**/*_spec.rb"'
     rspec_args = formatter
   end
-  sh "rspec #{rspec_args}"
+  sh "bundle exec rspec #{rspec_args}"
 end
 
 task default: %i[rubocop test_all]
