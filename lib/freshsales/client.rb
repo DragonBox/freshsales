@@ -7,7 +7,7 @@ module Freshsales
     end
 
     def httprequest(method_name, path, args = {})
-      parse_response(freshsales_request(method_name, path, args))
+      parse_response(freshsales_request(method_name, path, **args))
     end
 
     def logger
