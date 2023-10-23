@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Jerome Lacoste"]
   spec.email       = 'jerome@wewanttoknow.com'
 
-  spec.required_ruby_version = '>= 2.4.0'
+  spec.required_ruby_version = '>= 3.0.0'
 
   spec.summary     = "Freshsales"
   spec.description = 'A wrapper for Freshsales API'
