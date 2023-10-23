@@ -10,7 +10,7 @@ module Freshsales
     end
 
     def to_s
-      super + " " + params.to_s
+      "#{super} #{params}"
     end
   end
 end

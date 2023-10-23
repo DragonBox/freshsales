@@ -36,16 +36,15 @@ module UI
 
   class EPipeIgnorerLogDevice < Logger::LogDevice
     def initialize(logdev)
+      super
       @logdev = logdev
     end
 
-    # rubocop:disable HandleExceptions
     def write(message)
       @logdev.write(message)
     rescue Errno::EPIPE
       # ignored
     end
-    # rubocop:enable HandleExceptions
   end
   class << self
     def log
@@ -127,6 +126,7 @@ module UI
 
     def verify_interactive!(message)
       return if interactive?
+
       important(message)
       crash!("Could not retrieve response as the program runs in non-interactive mode")
     end
@@ -162,7 +162,7 @@ class GithubChangelogGenerator
           line
         end
       end
-      File.write(PATH, lines.join("\n") + "\n")
+      File.write(PATH, "#{lines.join("\n")}\n")
     end
   end
 end
@@ -180,7 +180,7 @@ class FreshsalesCode
           line
         end
       end
-      File.write(PATH, lines.join("\n") + "\n")
+      File.write(PATH, "#{lines.join("\n")}\n")
     end
   end
 end
@@ -206,6 +206,7 @@ end
 task :prepare_git_pr, [:pr_branch] do |_t, args|
   pr_branch = args['pr_branch']
   raise "Missing pr_branch argument" unless pr_branch
+
   UI.user_error! "Prepare git PR stopped by user" unless UI.confirm("Creating PR branch #{pr_branch}")
   run_command("git checkout -b #{pr_branch}")
 end

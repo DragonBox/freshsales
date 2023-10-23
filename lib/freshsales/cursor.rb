@@ -22,9 +22,7 @@ module Freshsales
     def each(start = 0, &block)
       return to_enum(:each, start) unless block_given?
 
-      Array(@collection[start..-1]).each do |element|
-        yield(element)
-      end
+      Array(@collection[start..]).each(&block)
 
       return if last?
 
@@ -50,7 +48,8 @@ module Freshsales
       j = response.body
 
       # might have been symbolized
-      if j.is_a? Hash
+      case j
+      when Hash
         meta = (j['meta'] || j[:meta])
         total_pages = (meta['total_pages'] || meta[:total_pages])
         last = nextpage == total_pages
@@ -62,13 +61,13 @@ module Freshsales
           when :elt
             j[@collection_name]
           end
-      elsif j.is_a? Array
+      when Array
         # most probably searching
         last = true
         logger.debug "Found #{j.count} elements #{@type} #{@collection_name}"
 
         data = j
-      elsif j.is_a? String
+      when String
         raise "Unexpected data type received #{j.class}. Are you combining pagination with raw_data? Unsupported for now"
       else
         raise "Unexpected data type received #{j.class}."
