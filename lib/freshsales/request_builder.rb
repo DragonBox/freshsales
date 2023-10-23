@@ -17,7 +17,6 @@ module Freshsales
       Cursor.new(@client, path, :elt, @path_parts[0], *args)
     end
 
-    # rubocop:disable Style/MethodMissing
     def method_missing(method, *args)
       if @httpmethods.include? method
         @client.httprequest(method.to_s, path, *args)
@@ -29,7 +28,6 @@ module Freshsales
         self
       end
     end
-    # rubocop:enable Style/MethodMissing
 
     def respond_to_missing?(_method_name, _include_private = false)
       true

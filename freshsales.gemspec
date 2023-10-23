@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'freshsales/version'
 
@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Jerome Lacoste"]
   spec.email       = 'jerome@wewanttoknow.com'
 
-  spec.required_ruby_version = '>= 2.4.0'
+  spec.required_ruby_version = '>= 3.0.0'
 
   spec.summary     = "Freshsales"
   spec.description = 'A wrapper for Freshsales API'
@@ -37,6 +37,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "rspec", "~> 3.8.0"
   spec.add_development_dependency 'rspec_junit_formatter', '~> 0.2.3'
-  spec.add_development_dependency 'rubocop', '~> 0.52.1'
+  spec.add_development_dependency 'rubocop', '~> 1.57.1'
   spec.add_development_dependency "webmock", "~> 3.3.0"
 end

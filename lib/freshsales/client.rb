@@ -33,6 +33,7 @@ module Freshsales
       MultiJson.load(body, symbolize_keys: @config.symbolize_keys)
     rescue MultiJson::ParseError => e
       return if ignore_parsing_errors
+
       error_params = { detail: e.message, status_code: 500, raw_body: body }
       error = FreshsalesError.new("Unparseable response", error_params)
       raise error
@@ -83,18 +84,16 @@ module Freshsales
 
     def connection
       @connection ||=
-        begin
-          Faraday.new(freshsales_domain, proxy: @config.proxy, ssl: { version: "TLSv1_2" }) do |c|
-            # c.request  :url_encoded
-            c.response :raise_error
-            c.use Faraday::Request::Authorization, 'Token', "token=#{@config.freshsales_apikey}"
-            if @config.debug
-              c.response :logger, @config.logger, bodies: true do |logger|
-                logger.filter(/(Token token=)(\w+)/, '\1[HIDDEN]')
-              end
+        Faraday.new(freshsales_domain, proxy: @config.proxy, ssl: { version: "TLSv1_2" }) do |c|
+          # c.request  :url_encoded
+          c.response :raise_error
+          c.use Faraday::Request::Authorization, 'Token', "token=#{@config.freshsales_apikey}"
+          if @config.debug
+            c.response :logger, @config.logger, bodies: true do |logger|
+              logger.filter(/(Token token=)(\w+)/, '\1[HIDDEN]')
             end
-            c.adapter @config.faraday_adapter
           end
+          c.adapter @config.faraday_adapter
         end
     end
   end

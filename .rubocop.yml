@@ -8,7 +8,7 @@
 AllCops:
   #Include:
   #  - '**/fastlane/Fastfile'
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 3.0
 
 # broken in 0.52.1
 Layout/EmptyLinesAroundArguments:
